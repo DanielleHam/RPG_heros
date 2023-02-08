@@ -15,11 +15,11 @@ namespace rpg_heros_c.equipment
 
         public EquipmentSlots equipmentSlot { get; set; }
 
-        public ArmorTypes armorType { get; set; }
+        public ArmorType armorType { get; set; }
 
         public HeroAttributes ArmorAttributes { get; set; }
 
-        public Armor(string Name, EquipmentSlots slot, ArmorTypes armorType, HeroAttributes attributes) // set slot choses in program cs
+        public Armor(string Name, EquipmentSlots slot, ArmorType armorType, HeroAttributes attributes) // set slot choses in program cs
         {
             this.Name = Name;
             this.equipmentSlot = slot;

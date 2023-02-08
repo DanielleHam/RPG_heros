@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace rpg_heros_c.enums
 {
-    public enum ArmorTypes
+    public enum ArmorType
     {
-        cloth, 
+        Cloth, 
         Leather, 
         Mail,
         Plate

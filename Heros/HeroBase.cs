@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace rpg_heros_c.Heros
 {
-    abstract class HeroBase
+    public abstract class HeroBase
     {
         protected string Name { get; set; }
 
@@ -26,11 +26,8 @@ namespace rpg_heros_c.Heros
             get; set;
         }
 
-        public void LevelUp()
-        {
-            Level++;
-        }
-
+        public abstract void LevelUp();
+       
 
         public HeroAttributes Attributes { get; set; }
 
@@ -38,7 +35,7 @@ namespace rpg_heros_c.Heros
 
         public  Weapon WeaponSlots; // what the Hero has
 
-        public ArmorTypes[] ArmorTypes; // What the Hero can have
+        public ArmorType[] ArmorTypes; // What the Hero can have
         public Dictionary<EquipmentSlots, Armor> ArmorSlots; // what the Hero has
 
         public void SetWeapon(Weapon weapon)
