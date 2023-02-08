@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace rpg_heros_c.enums
 {
-    public enum WeaponSlots
+    public enum ArmorTypes
     {
-        Weapon, 
-        Head, 
-        Body, 
-        Legs
+        cloth, 
+        Leather, 
+        Mail,
+        Plate
     }
 }
