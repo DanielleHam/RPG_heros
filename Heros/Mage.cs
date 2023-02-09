@@ -9,19 +9,26 @@ namespace rpg_heros_c.Heros
 {
     public class Mage : HeroBase
     {
-        public Mage(string Name) : base(Name)
+        public Mage(string Name) : base(Name) 
         {
-            Attributes.Strength = 1;
-            Attributes.Dexterity = 1;
-            Attributes.Intelligence = 8;
-            WeaponTypes = new WeaponType[] {WeaponType.Staffs, WeaponType.Wands};
-            ArmorTypes = new ArmorType[] {ArmorType.Cloth };
+            this.Name = Name;
+            this.Class = "Mage";
+            this.Attributes = new HeroAttributes(1,1,8);
+            WeaponTypes = new WeaponType[] { WeaponType.Staffs, WeaponType.Wands };
+            ArmorTypes = new ArmorType[] { ArmorType.Cloth };
+            
         }
 
 
         public override int DamageCount()
         {
-            throw new NotImplementedException();
+            if(WeaponSlots != null)
+            {
+                return WeaponSlots.WeaponDamage * (1 + Attributes.Intelligence / 100);
+            } else
+            {
+                return 1 * (1 + Attributes.Intelligence / 100);
+            }
         }
 
         public override void LevelUp()

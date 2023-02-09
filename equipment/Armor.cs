@@ -8,22 +8,19 @@ using System.Threading.Tasks;
 
 namespace rpg_heros_c.equipment
 {
-    public class Armor
+    public class Armor : Equipment
     {
-        public string Name { get; set; }
-        public int RequiredLevel { get; set; }
-
-        public EquipmentSlots equipmentSlot { get; set; }
 
         public ArmorType armorType { get; set; }
 
         public HeroAttributes ArmorAttributes { get; set; }
 
-        public Armor(string Name, EquipmentSlots slot, ArmorType armorType, HeroAttributes attributes) // set slot choses in program cs
+        public Armor(string Name, EquipmentSlots slot, ArmorType armorType, int RequiredLevel, HeroAttributes attributes) // set in program cs
         {
             this.Name = Name;
             this.equipmentSlot = slot;
             this.armorType = armorType;
+            this.RequiredLevel = RequiredLevel;
             this.ArmorAttributes = attributes;
         }
     }
