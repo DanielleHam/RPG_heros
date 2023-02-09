@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace rpg_heros_c.Heros
 {
-    public class Ranger : HeroBase
+    public class Rogue : HeroBase
     {
-        public Ranger(string Name) : base(Name)
+        public Rogue(string Name) : base(Name)
         {
             this.Name = Name;
-            this.Class = "Ranger";
+            this.Class = "Rouge";
             Level = 1;
-            this.Attributes = new HeroAttributes(1, 7, 1);
-            WeaponTypes = new WeaponType[] { WeaponType.Bows };
+            this.Attributes = new HeroAttributes(2, 6, 1);
+            WeaponTypes = new WeaponType[] { WeaponType.Daggers, WeaponType.Swords };
             ArmorTypes = new ArmorType[] { ArmorType.Leather, ArmorType.Mail };
         }
 
@@ -34,7 +34,7 @@ namespace rpg_heros_c.Heros
         public override void LevelUp()
         {
             Attributes.Strength += 1;
-            Attributes.Dexterity += 5;
+            Attributes.Dexterity += 4;
             Attributes.Intelligence += 1;
             Level++;
         }

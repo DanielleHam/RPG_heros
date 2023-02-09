@@ -13,6 +13,7 @@ namespace rpg_heros_c.Heros
         {
             this.Name = Name;
             this.Class = "Mage";
+            Level = 1;
             this.Attributes = new HeroAttributes(1,1,8);
             WeaponTypes = new WeaponType[] { WeaponType.Staffs, WeaponType.Wands };
             ArmorTypes = new ArmorType[] { ArmorType.Cloth };
