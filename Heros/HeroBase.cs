@@ -1,5 +1,6 @@
 ﻿using rpg_heros_c.enums;
 using rpg_heros_c.equipment;
+using rpg_heros_c.exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -40,6 +41,7 @@ namespace rpg_heros_c.Heros
 
         public void SetWeapon(Weapon weapon)
         {
+
             if (Level == weapon.RequiredLevel)
             {
                 if (Array.Exists(WeaponTypes, element => element == weapon.type))
@@ -48,34 +50,46 @@ namespace rpg_heros_c.Heros
                 }
                 else
                 {
-                    Console.WriteLine("you can't equip that sort of weapon!");
+                    throw new InvalidWeaponException("you can't equip that sort of weapon!");
                 }
-            } else
-            {
-                Console.WriteLine("you have to low of a level for this weapon!");
             }
-          
-            
+            else
+            {
+                throw new InvalidWeaponException("you have to low of a level for this weapon!");
+
+            }
+
+
         }
         public void SetArmor(Armor armor)
         {
-            if(Array.Exists(ArmorTypes, element => element == armor.armorType))
+            if (Level == armor.RequiredLevel)
             {
-                ArmorSlots[armor.equipmentSlot] = armor;
+                if (Array.Exists(ArmorTypes, element => element == armor.armorType))
+                {
+                    ArmorSlots[armor.equipmentSlot] = armor;
+                }
+                else
+                {
+                    throw new InvalidArmorException("you can't equip that sort of armor!");
+                }
+            } else
+            {
+                throw new InvalidArmorException("you have to low of a level for this armor!");
             }
-            else { Console.WriteLine("you can't equip that sort of armor!");  }
-            
+
+
         }
 
         public abstract double DamageCount();
 
         public HeroAttributes TotalAttributes()
         {
-           
+
             int totalStr = Attributes.Strength;
             int totalInt = Attributes.Intelligence;
             int totalDex = Attributes.Dexterity;
-            if(ArmorSlots != null)
+            if (ArmorSlots != null)
             {
                 foreach (Armor armor in ArmorSlots.Values)
                 {
@@ -85,7 +99,7 @@ namespace rpg_heros_c.Heros
 
                 }
             }
-           
+
 
             HeroAttributes totalHeroAttributes = new HeroAttributes(totalStr, totalDex, totalInt);
 
@@ -100,7 +114,7 @@ namespace rpg_heros_c.Heros
             StringBuilder heroInfo = new StringBuilder();
 
             var totalAtt = TotalAttributes();
-            
+
             heroInfo.AppendLine("Here is the info about your Hero: ");
             heroInfo.AppendLine("Name: " + this.Name);
             heroInfo.AppendLine("Level: " + this.Level);
@@ -109,11 +123,11 @@ namespace rpg_heros_c.Heros
             heroInfo.AppendLine(" - Intelligence: " + Attributes.Intelligence);
             heroInfo.AppendLine(" - Dexterity: " + Attributes.Dexterity);
             heroInfo.AppendLine();
-           
-            if(ArmorSlots != null)
+
+            if (ArmorSlots != null)
             {
                 heroInfo.AppendLine("Armor: ");
-                
+
                 foreach (Armor armor in ArmorSlots.Values)
                 {
                     heroInfo.AppendLine(" - Name: " + armor.Name);
@@ -131,10 +145,10 @@ namespace rpg_heros_c.Heros
                     heroInfo.AppendLine(" - " + armor);
                 heroInfo.AppendLine();
             }
-           
 
-           
-            if(WeaponSlots != null)
+
+
+            if (WeaponSlots != null)
             {
                 heroInfo.AppendLine("Weapon: ");
                 heroInfo.AppendLine(" - Name: " + WeaponSlots.Name);
@@ -147,8 +161,8 @@ namespace rpg_heros_c.Heros
             else
             {
                 heroInfo.AppendLine("Allowed weapons: ");
-                foreach(WeaponType weapon in WeaponTypes)
-                heroInfo.AppendLine(" - " + weapon);
+                foreach (WeaponType weapon in WeaponTypes)
+                    heroInfo.AppendLine(" - " + weapon);
             }
 
             heroInfo.AppendLine();
@@ -156,9 +170,8 @@ namespace rpg_heros_c.Heros
             heroInfo.AppendLine(totalAtt.ToString());
 
 
-
             return heroInfo.ToString();
-           
+
         }
 
 

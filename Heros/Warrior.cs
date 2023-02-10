@@ -15,6 +15,7 @@ namespace rpg_heros_c.Heros
             this.Class = "Warrior";
             Level = 1;
             this.Attributes = new HeroAttributes(5, 2, 1);
+            ArmorSlots = new Dictionary<EquipmentSlots, equipment.Armor>();
             WeaponTypes = new WeaponType[] { WeaponType.Axes, WeaponType.Hammers, WeaponType.Swords };
             ArmorTypes = new ArmorType[] { ArmorType.Plate, ArmorType.Mail };
         }

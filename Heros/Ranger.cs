@@ -15,6 +15,7 @@ namespace rpg_heros_c.Heros
             this.Class = "Ranger";
             Level = 1;
             this.Attributes = new HeroAttributes(1, 7, 1);
+            ArmorSlots = new Dictionary<EquipmentSlots, equipment.Armor>();
             WeaponTypes = new WeaponType[] { WeaponType.Bows };
             ArmorTypes = new ArmorType[] { ArmorType.Leather, ArmorType.Mail };
         }
