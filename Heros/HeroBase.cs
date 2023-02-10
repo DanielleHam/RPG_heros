@@ -67,7 +67,7 @@ namespace rpg_heros_c.Heros
             
         }
 
-        public abstract int DamageCount();
+        public abstract double DamageCount();
 
         public HeroAttributes TotalAttributes()
         {
@@ -75,71 +75,89 @@ namespace rpg_heros_c.Heros
             int totalStr = Attributes.Strength;
             int totalInt = Attributes.Intelligence;
             int totalDex = Attributes.Dexterity;
-            foreach (Armor armor in ArmorSlots.Values)
+            if(ArmorSlots != null)
             {
-                totalStr += armor.ArmorAttributes.Strength;
-                totalInt += armor.ArmorAttributes.Intelligence;
-                totalDex += armor.ArmorAttributes.Dexterity;
-                  
+                foreach (Armor armor in ArmorSlots.Values)
+                {
+                    totalStr += armor.ArmorAttributes.Strength;
+                    totalInt += armor.ArmorAttributes.Intelligence;
+                    totalDex += armor.ArmorAttributes.Dexterity;
+
+                }
             }
+           
 
             HeroAttributes totalHeroAttributes = new HeroAttributes(totalStr, totalDex, totalInt);
+
+
 
             return totalHeroAttributes;
         }
 
-        public void Display()
+        public string Display()
         {
-            Console.WriteLine("Here is the info about your Hero: ");
-            Console.WriteLine("Name: " + this.Name);
-            Console.WriteLine("Level: " + this.Level);
-            Console.WriteLine("Class: " + this.Class);
-            Console.WriteLine(" - Strength: " + Attributes.Strength);
-            Console.WriteLine(" - Intelligence: " + Attributes.Intelligence);
-            Console.WriteLine(" - Dexterity: " + Attributes.Dexterity);
-            Console.WriteLine();
+
+            StringBuilder heroInfo = new StringBuilder();
+
+            var totalAtt = TotalAttributes();
+            
+            heroInfo.AppendLine("Here is the info about your Hero: ");
+            heroInfo.AppendLine("Name: " + this.Name);
+            heroInfo.AppendLine("Level: " + this.Level);
+            heroInfo.AppendLine("Class: " + this.Class);
+            heroInfo.AppendLine(" - Strength: " + Attributes.Strength);
+            heroInfo.AppendLine(" - Intelligence: " + Attributes.Intelligence);
+            heroInfo.AppendLine(" - Dexterity: " + Attributes.Dexterity);
+            heroInfo.AppendLine();
            
             if(ArmorSlots != null)
             {
-                Console.WriteLine("Armor: ");
+                heroInfo.AppendLine("Armor: ");
+                
                 foreach (Armor armor in ArmorSlots.Values)
                 {
-                    Console.WriteLine(" - Name: " + armor.Name);
-                    Console.WriteLine(" - Required Level: " + armor.RequiredLevel);
-                    Console.WriteLine(" - Slot: " + armor.equipmentSlot);
-                    Console.WriteLine(" - Armor Type: " + armor.armorType);
-                    Console.WriteLine(" - Armor Attribute : str: " + armor.ArmorAttributes.Strength + ", dex: " + armor.ArmorAttributes.Dexterity + ", int: " + armor.ArmorAttributes.Intelligence);
-                    Console.WriteLine();
+                    heroInfo.AppendLine(" - Name: " + armor.Name);
+                    heroInfo.AppendLine(" - Required Level: " + armor.RequiredLevel);
+                    heroInfo.AppendLine(" - Slot: " + armor.equipmentSlot);
+                    heroInfo.AppendLine(" - Armor Type: " + armor.armorType);
+                    heroInfo.AppendLine(" - Armor Attribute : str: " + armor.ArmorAttributes.Strength + ", dex: " + armor.ArmorAttributes.Dexterity + ", int: " + armor.ArmorAttributes.Intelligence);
+                    heroInfo.AppendLine();
                 }
             }
             else
             {
-                Console.WriteLine("Allowed armor: ");
+                heroInfo.AppendLine("Allowed armor: ");
                 foreach (ArmorType armor in ArmorTypes)
-                    Console.Write(" - " + armor + "\n");
-                Console.WriteLine();
+                    heroInfo.AppendLine(" - " + armor);
+                heroInfo.AppendLine();
             }
            
 
            
             if(WeaponSlots != null)
             {
-                Console.WriteLine("Weapon: ");
-                Console.WriteLine(" - Name: " + WeaponSlots.Name);
-                Console.WriteLine(" - Required Level: " + WeaponSlots.RequiredLevel);
-                Console.WriteLine(" - Slot: " + WeaponSlots.equipmentSlot);
-                Console.WriteLine(" - Weapon type: " + WeaponSlots.type);
-                Console.WriteLine(" - Weapon damage: " + WeaponSlots.WeaponDamage);
-                Console.WriteLine("Total Damage count: " + DamageCount());
+                heroInfo.AppendLine("Weapon: ");
+                heroInfo.AppendLine(" - Name: " + WeaponSlots.Name);
+                heroInfo.AppendLine(" - Required Level: " + WeaponSlots.RequiredLevel);
+                heroInfo.AppendLine(" - Slot: " + WeaponSlots.equipmentSlot);
+                heroInfo.AppendLine(" - Weapon type: " + WeaponSlots.type);
+                heroInfo.AppendLine(" - Weapon damage: " + WeaponSlots.WeaponDamage);
+                heroInfo.AppendLine("Total Damage count: " + DamageCount());
             }
             else
             {
-                Console.WriteLine("Allowed weapons: ");
+                heroInfo.AppendLine("Allowed weapons: ");
                 foreach(WeaponType weapon in WeaponTypes)
-                Console.Write(" - " + weapon + "\n");
-
-                
+                heroInfo.AppendLine(" - " + weapon);
             }
+
+            heroInfo.AppendLine();
+            heroInfo.AppendLine("Total damage: " + DamageCount());
+            heroInfo.AppendLine(totalAtt.ToString());
+
+
+
+            return heroInfo.ToString();
            
         }
 

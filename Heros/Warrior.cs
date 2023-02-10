@@ -19,7 +19,7 @@ namespace rpg_heros_c.Heros
             ArmorTypes = new ArmorType[] { ArmorType.Plate, ArmorType.Mail };
         }
 
-        public override int DamageCount()
+        public override double DamageCount()
         {
             if (WeaponSlots != null)
             {

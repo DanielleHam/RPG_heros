@@ -15,13 +15,13 @@ namespace rpg_heros_c.equipment
 
         public HeroAttributes ArmorAttributes { get; set; }
 
-        public Armor(string Name, EquipmentSlots slot, ArmorType armorType, int RequiredLevel, HeroAttributes attributes) // set in program cs
+        public Armor(string Name, EquipmentSlots slot, ArmorType armorType, int RequiredLevel, int str, int dex, int intel) // set in program cs
         {
             this.Name = Name;
             this.equipmentSlot = slot;
             this.armorType = armorType;
             this.RequiredLevel = RequiredLevel;
-            this.ArmorAttributes = attributes;
+            this.ArmorAttributes = new HeroAttributes(str, dex, intel);
         }
     }
 }

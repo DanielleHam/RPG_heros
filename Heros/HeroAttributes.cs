@@ -20,5 +20,10 @@ namespace rpg_heros_c.Heros
             Dexterity = dexterity;
             Intelligence = intelligence;
         }
+
+        public override string? ToString()
+        {
+            return string.Format("Strength: " + Strength + "\n" +  "Dexterity: " + Dexterity + "\n" + "Intelligence " + Intelligence);
+        }
     }
 }

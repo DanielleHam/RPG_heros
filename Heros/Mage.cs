@@ -17,11 +17,10 @@ namespace rpg_heros_c.Heros
             this.Attributes = new HeroAttributes(1,1,8);
             WeaponTypes = new WeaponType[] { WeaponType.Staffs, WeaponType.Wands };
             ArmorTypes = new ArmorType[] { ArmorType.Cloth };
-            
         }
 
 
-        public override int DamageCount()
+        public override double DamageCount()
         {
             if(WeaponSlots != null)
             {
