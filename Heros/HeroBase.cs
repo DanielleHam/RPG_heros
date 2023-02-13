@@ -13,7 +13,7 @@ namespace rpg_heros_c.Heros
 {
     public abstract class HeroBase
     {
-        protected string Name { get; set; }
+        public string Name { get; protected set; }
 
         public HeroBase(string Name)
         {
