@@ -1,6 +1,6 @@
 using rpg_heros_c.Heros;
 
-namespace rpg_heros_test
+namespace rpg_heros_test.HerosTests
 {
     public class MageTest
     {
