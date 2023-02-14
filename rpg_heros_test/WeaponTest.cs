@@ -12,7 +12,7 @@ namespace rpg_heros_test
     {
 
         [Fact] 
-        public void Weapon_NameAfterCeation_ShoudeReturnName()
+        public void Weapon_NameAfterCeation_ShouldReturnName()
         {
             //arrange & act
             Weapon commonAxe = new("Common Axe", WeaponType.Axes, 2, 1);
@@ -22,7 +22,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Weapon_SlotAfterCeation_ShoudeReturnSlot()
+        public void Weapon_SlotAfterCeation_ShouldReturnSlot()
         {
             //arrange & act
             Weapon commonAxe = new("Common Axe", WeaponType.Axes, 2, 1);
@@ -32,7 +32,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Weapon_TypeAfterCeation_ShoudeReturnType()
+        public void Weapon_TypeAfterCeation_ShouldReturnType()
         {
             //arrange & act
             Weapon commonAxe = new("Common Axe", WeaponType.Axes, 2, 1);
@@ -42,7 +42,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Weapon_RequiredLevelAfterCeation_ShoudeReturnLevel()
+        public void Weapon_RequiredLevelAfterCeation_ShouldReturnLevel()
         {
             //arrange & act
             Weapon commonAxe = new("Common Axe", WeaponType.Axes, 2, 1);
@@ -52,7 +52,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Weapon_DanamgeAfterCeation_ShoudeReturnDamage()
+        public void Weapon_DanamgeAfterCeation_ShouldReturnDamage()
         {
             //arrange & act
             Weapon commonAxe = new("Common Axe", WeaponType.Axes, 2, 1);

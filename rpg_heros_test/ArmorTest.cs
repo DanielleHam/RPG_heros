@@ -12,7 +12,7 @@ namespace rpg_heros_test
     public class ArmorTest
     {
         [Fact]
-        public void Armor_NameAfterCeation_ShoudeReturnName()
+        public void Armor_NameAfterCeation_ShouldReturnName()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
@@ -22,7 +22,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Armor_SlotAfterCeation_ShoudeReturnSlot()
+        public void Armor_SlotAfterCeation_ShouldReturnSlot()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
@@ -32,7 +32,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Armor_TypeAfterCeation_ShoudeReturnType()
+        public void Armor_TypeAfterCeation_ShouldReturnType()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
@@ -42,7 +42,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Armor_RequiredLevelAfterCeation_ShoudeReturnLevel()
+        public void Armor_RequiredLevelAfterCeation_ShouldReturnLevel()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
@@ -52,7 +52,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Armor_StengthAfterCreation_ShoudRetunOne()
+        public void Armor_StengthAfterCreation_ShouldRetunOne()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
@@ -62,7 +62,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Armor_DexterityAfterCreation_ShoudReturnZero()
+        public void Armor_DexterityAfterCreation_ShouldReturnZero()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
@@ -72,7 +72,7 @@ namespace rpg_heros_test
         }
 
         [Fact]
-        public void Armor_IntelligenceAfterCreation_ShoudRetunZero()
+        public void Armor_IntelligenceAfterCreation_ShouldRetunZero()
         {
             //arrange & act
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
