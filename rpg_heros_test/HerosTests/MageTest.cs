@@ -60,9 +60,9 @@ namespace rpg_heros_test.HerosTests
         {
             // arrange
             Mage newHero = new Mage("Dan");
-            int levelUpStrength = newHero.Attributes.Strength + 1;
-            int levelUpDexterity = newHero.Attributes.Dexterity+ 1;
-            int levelUpIntelligence = newHero.Attributes.Intelligence + 5;
+            int levelUpStrength = 1 + 1;
+            int levelUpDexterity = 1 + 1;
+            int levelUpIntelligence = 8 + 5;
 
             //act
             newHero.LevelUp();
@@ -91,7 +91,7 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_equipValidWeaponTLevel_ShouldReturnWeaponLevel()
+        public void Mage_equipValidWeaponLevel_ShouldReturnWeaponLevel()
         {
             //arrange 
             Mage newHero = new Mage("Dan");
@@ -194,9 +194,9 @@ namespace rpg_heros_test.HerosTests
             //arrange 
             Mage newHero = new Mage("Dan");
 
-            int totalStrength = newHero.Attributes.Strength;
-            int totalDexterity = newHero.Attributes.Dexterity;
-            int totalIntelligence = newHero.Attributes.Intelligence;
+            int totalStrength = 1;
+            int totalDexterity = 1;
+            int totalIntelligence = 8;
 
             //act 
             var total = newHero.TotalAttributes();
@@ -215,9 +215,9 @@ namespace rpg_heros_test.HerosTests
             Mage newHero = new Mage("Dan");
             Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 1, 0, 2);
 
-            int totalStrength = newHero.Attributes.Strength + cloth.ArmorAttributes.Strength;
-            int totalDexterity = newHero.Attributes.Dexterity + cloth.ArmorAttributes.Dexterity;
-            int totalIntelligence = newHero.Attributes.Intelligence + cloth.ArmorAttributes.Intelligence;
+            int totalStrength = 1 + 1;
+            int totalDexterity = 1 + 0;
+            int totalIntelligence = 8 + 2;
 
             //act 
             newHero.SetArmor(cloth);
@@ -238,9 +238,9 @@ namespace rpg_heros_test.HerosTests
             Armor cape = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 1, 0, 2);
             Armor hat = new Armor("Common mage hat", EquipmentSlots.Head, ArmorType.Cloth, 1, 0, 0, 3);
 
-            int totalStrength = newHero.Attributes.Strength + cape.ArmorAttributes.Strength + hat.ArmorAttributes.Strength;
-            int totalDexterity = newHero.Attributes.Dexterity + cape.ArmorAttributes.Dexterity + hat.ArmorAttributes.Dexterity;
-            int totalIntelligence = newHero.Attributes.Intelligence + cape.ArmorAttributes.Intelligence + hat.ArmorAttributes.Intelligence;
+            int totalStrength = 1 + 1 + 0;
+            int totalDexterity = 1 + 0 + 0;
+            int totalIntelligence = 8 + 2 + 3;
 
             //act 
             newHero.SetArmor(cape);
@@ -248,10 +248,7 @@ namespace rpg_heros_test.HerosTests
             var total = newHero.TotalAttributes();
 
             //assert
-            Assert.True(
-                total.Strength == totalStrength &&
-                total.Dexterity == totalDexterity &&
-                total.Intelligence == totalIntelligence);
+            Assert.True(total.Strength == totalStrength && total.Dexterity == totalDexterity && total.Intelligence == totalIntelligence);
         }
 
         [Fact]
@@ -263,9 +260,9 @@ namespace rpg_heros_test.HerosTests
             Armor hat = new Armor("Common mage hat", EquipmentSlots.Head, ArmorType.Cloth, 1, 0, 0, 3);
             Armor niceHat = new Armor("Common mage hat for party's", EquipmentSlots.Head, ArmorType.Cloth, 1, 1, 2, 3);
 
-            int totalStrength = newHero.Attributes.Strength + cape.ArmorAttributes.Strength + niceHat.ArmorAttributes.Strength;
-            int totalDexterity = newHero.Attributes.Dexterity + cape.ArmorAttributes.Dexterity + niceHat.ArmorAttributes.Dexterity;
-            int totalIntelligence = newHero.Attributes.Intelligence + cape.ArmorAttributes.Intelligence + niceHat.ArmorAttributes.Intelligence;
+            int totalStrength = 1 + 1 + 1;
+            int totalDexterity = 1 + 0 + 2;
+            int totalIntelligence = 8 + 2 + 3;
 
             //act 
             newHero.SetArmor(cape);
@@ -302,13 +299,31 @@ namespace rpg_heros_test.HerosTests
             //arrange 
             Mage newHero = new Mage("Dan");
             Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
-            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 0, 1, 2);
+            
 
             //act 
             newHero.SetWeapon(commonWand);
-            newHero.SetArmor(cloth);
+            
+            double expeted = 2.16;
 
-            double expeted = 2.2;
+            //assert
+            Assert.Equal(expeted, newHero.DamageCount());
+
+        }
+
+        [Fact]
+        public void Mage_TotalDamagesWithReplacedWeapon_ShouldReturnTotalDamages()
+        {
+            //arrange 
+            Mage newHero = new Mage("Dan");
+            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
+            Weapon fineWand = new("Fine Wand", WeaponType.Wands, 3, 1);
+
+            //act 
+            newHero.SetWeapon(commonWand);
+            newHero.SetWeapon(fineWand);
+
+            double expeted = 3.24;
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -321,11 +336,13 @@ namespace rpg_heros_test.HerosTests
             //arrange 
             Mage newHero = new Mage("Dan");
             Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
+            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 0, 1, 2);
 
             //act 
             newHero.SetWeapon(commonWand);
+            newHero.SetArmor(cloth);
 
-            double expeted = 2.16;
+            double expeted = 2.2;
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
