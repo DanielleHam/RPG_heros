@@ -22,14 +22,19 @@ namespace rpg_heros_c.Heros
 
         public override double DamageCount()
         {
+            double totalDamage;
+            double baseDamage = TotalAttributes().Strength;
+
             if (WeaponSlots != null)
             {
-                return WeaponSlots.WeaponDamage * (1 + Attributes.Strength / 100);
+
+                totalDamage = (WeaponSlots.WeaponDamage * (1 + baseDamage / 100));
             }
             else
             {
-                return 1 * (1 + Attributes.Strength / 100);
+                totalDamage = (1 * (1 + baseDamage / 100));
             }
+            return totalDamage;
         }
 
         public override void LevelUp()

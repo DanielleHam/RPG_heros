@@ -1,5 +1,6 @@
 ﻿using rpg_heros_c.enums;
 using rpg_heros_c.equipment;
+using rpg_heros_c.exceptions;
 using rpg_heros_c.Heros;
 using System;
 using System.Collections.Generic;
@@ -79,6 +80,18 @@ namespace rpg_heros_test
 
             //assert
             Assert.Equal(0, plate.ArmorAttributes.Intelligence);
+        }
+
+        [Fact]
+        public void Armor_CreateArmorAsWeapon_ShouldThrowException()
+        {
+            //arrange 
+            //Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Weapon, ArmorType.Plate, 1, 1, 0, 0);
+
+            //act 
+
+            //assert
+            Assert.Throws<InvalidArmorException>(() => new Armor("Common Plate Chest", EquipmentSlots.Weapon, ArmorType.Plate, 1, 1, 0, 0));
         }
     }
 }

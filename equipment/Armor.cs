@@ -1,4 +1,5 @@
 ﻿using rpg_heros_c.enums;
+using rpg_heros_c.exceptions;
 using rpg_heros_c.Heros;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace rpg_heros_c.equipment
 
         public Armor(string Name, EquipmentSlots slot, ArmorType armorType, int RequiredLevel, int str, int dex, int intel) // set in program cs
         {
+            if (slot == EquipmentSlots.Weapon)
+            {
+                throw new InvalidArmorException("you can't create an armor as weapon!");
+            }
             this.Name = Name;
             this.equipmentSlot = slot;
             this.armorType = armorType;
