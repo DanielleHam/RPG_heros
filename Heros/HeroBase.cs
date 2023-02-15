@@ -156,7 +156,6 @@ namespace rpg_heros_c.Heros
                 heroInfo.AppendLine(" - Slot: " + WeaponSlots.equipmentSlot);
                 heroInfo.AppendLine(" - Weapon type: " + WeaponSlots.type);
                 heroInfo.AppendLine(" - Weapon damage: " + WeaponSlots.WeaponDamage);
-                heroInfo.AppendLine("Total Damage count: " + DamageCount());
             }
             else
             {

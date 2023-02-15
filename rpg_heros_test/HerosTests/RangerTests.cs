@@ -1,52 +1,56 @@
-using rpg_heros_c.enums;
+﻿using rpg_heros_c.enums;
 using rpg_heros_c.equipment;
 using rpg_heros_c.exceptions;
 using rpg_heros_c.Heros;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace rpg_heros_test.HerosTests
 {
-    public class MageTest
+    public class RangerTests
     {
         // creation 
         [Fact]
-        public void Mage_NameAfterCreation_ShouldReturnName()
+        public void Ranger_NameAfterCreation_ShouldReturnName()
         {
             //arrange & act
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
 
             //assert
             Assert.Equal("Dan", newHero.Name);
         }
 
         [Fact]
-        public void Mage_LevelAfterCreation_ShouldReturnOne()
+        public void Ranger_LevelAfterCreation_ShouldReturnOne()
         {
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
 
             //assert
             Assert.Equal(1, newHero.Level);
         }
 
-        [Fact] 
-        public void Mage_AttributesAfterCreation_ShouldReturnAttributes()
+        [Fact]
+        public void Ranger_AttributesAfterCreation_ShouldReturnAttributes()
         {
             //arrange & act 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
 
             // assert
             Assert.True(
-                newHero.Attributes.Strength == 1 && 
-                newHero.Attributes.Dexterity == 1 && 
-                newHero.Attributes.Intelligence == 8);
+                newHero.Attributes.Strength == 1 &&
+                newHero.Attributes.Dexterity == 7 &&
+                newHero.Attributes.Intelligence == 1);
         }
 
         // Level up 
         [Fact]
-        public void Mage_LevelAfterLevelUp_ShouldRetunTwo()
+        public void Ranger_LevelAfterLevelUp_ShouldRetunTwo()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
 
             // act
             newHero.LevelUp();
@@ -55,14 +59,14 @@ namespace rpg_heros_test.HerosTests
             Assert.Equal(2, newHero.Level);
         }
 
-        [Fact] 
-        public void Mage_AttributesAfterLevelUp_ShouldReturnAttributes()
+        [Fact]
+        public void Ranger_AttributesAfterLevelUp_ShouldReturnAttributes()
         {
             // arrange
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
             int levelUpStrength = 1 + 1;
-            int levelUpDexterity = 1 + 1;
-            int levelUpIntelligence = 8 + 5;
+            int levelUpDexterity = 7 + 5;
+            int levelUpIntelligence = 1 + 1;
 
             //act
             newHero.LevelUp();
@@ -77,51 +81,51 @@ namespace rpg_heros_test.HerosTests
         // weapon equip 
 
         [Fact]
-        public void Mage_equipValidWeaponType_ShouldReturnWeaponInSlotType()
+        public void Ranger_equipValidWeaponType_ShouldReturnWeaponInSlotType()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 1);
 
             //act 
-            newHero.SetWeapon(commonWand);
+            newHero.SetWeapon(Bow);
 
             //assert
-            Assert.Equal(WeaponType.Wands, newHero.WeaponSlots.type);
+            Assert.Equal(WeaponType.Bows, newHero.WeaponSlots.type);
         }
 
         [Fact]
-        public void Mage_equipValidWeaponLevel_ShouldReturnWeaponLevel()
+        public void Ranger_equipValidWeaponLevel_ShouldReturnWeaponLevel()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 1);
 
             //act 
-            newHero.SetWeapon(commonWand);
+            newHero.SetWeapon(Bow);
 
             //assert
-            Assert.Equal(commonWand.RequiredLevel, newHero.Level);
+            Assert.Equal(Bow.RequiredLevel, newHero.Level);
         }
 
         [Fact]
-        public void Mage_equipInvalidWeaponLevel_ShouldThrowException()
+        public void Ranger_equipInvalidWeaponLevel_ShouldThrowException()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon Wand = new("Wand", WeaponType.Wands, 2, 2);
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 2);
 
             //act 
-           
+
             //assert
-            Assert.Throws<InvalidWeaponException>(() => newHero.SetWeapon(Wand));
+            Assert.Throws<InvalidWeaponException>(() => newHero.SetWeapon(Bow));
         }
 
         [Fact]
-        public void Mage_equipInvalidWeaponType_ShouldThrowException()
+        public void Ranger_equipInvalidWeaponType_ShouldThrowException()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
             Weapon commonAxe = new Weapon("Common Axe", WeaponType.Axes, 2, 1);
 
             //act 
@@ -132,53 +136,53 @@ namespace rpg_heros_test.HerosTests
 
         // armor equip 
         [Fact]
-        public void Mage_equipValidArmorType_ShouldReturnArmorInSlotType()
+        public void Ranger_equipValidArmorType_ShouldReturnArmorInSlotType()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 0, 1, 2);
+            Ranger newHero = new Ranger("Dan");
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
 
 
             //act 
-            newHero.SetArmor(cloth);
+            newHero.SetArmor(leather);
 
             //assert
-            Assert.Equal(ArmorType.Cloth, newHero.ArmorSlots[cloth.equipmentSlot].armorType);
+            Assert.Equal(ArmorType.Leather, newHero.ArmorSlots[leather.equipmentSlot].armorType);
         }
 
         [Fact]
-        public void Mage_equipValidArmorLevel_ShouldReturnArmorLevel()
+        public void Ranger_equipValidArmorLevel_ShouldReturnArmorLevel()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 0, 1, 2);
+            Ranger newHero = new Ranger("Dan");
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
 
 
             //act 
-            newHero.SetArmor(cloth);
+            newHero.SetArmor(leather);
 
             //assert
-            Assert.Equal(cloth.RequiredLevel, newHero.Level);
+            Assert.Equal(leather.RequiredLevel, newHero.Level);
         }
 
         [Fact]
-        public void Mage_equipInvalidArmorLevel_ShouldThrowException()
+        public void Ranger_equipInvalidArmorLevel_ShouldThrowException()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 2, 0, 1, 2);
+            Ranger newHero = new Ranger("Dan");
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 2, 1, 0, 2);
 
             //act 
 
             //assert
-            Assert.Throws<InvalidArmorException>(() => newHero.SetArmor(cloth));
+            Assert.Throws<InvalidArmorException>(() => newHero.SetArmor(leather));
         }
 
         [Fact]
-        public void Mage_equipInvalidArmorType_ShouldThrowException()
+        public void Ranger_equipInvalidArmorType_ShouldThrowException()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
             Armor plate = new Armor("Common Plate Chest", EquipmentSlots.Body, ArmorType.Plate, 1, 1, 0, 0);
 
             //act 
@@ -189,38 +193,16 @@ namespace rpg_heros_test.HerosTests
 
         // attributes 
         [Fact]
-        public void Mage_TotalAttributeNoArmor_ShouldReturnTotalAttributes()
+        public void Ranger_TotalAttributeNoArmor_ShouldReturnTotalAttributes()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
 
             int totalStrength = 1;
-            int totalDexterity = 1;
-            int totalIntelligence = 8;
+            int totalDexterity = 7;
+            int totalIntelligence = 1;
 
             //act 
-            var total = newHero.TotalAttributes();
-
-            //assert
-            Assert.True(
-                total.Strength == totalStrength && 
-                total.Dexterity == totalDexterity && 
-                total.Intelligence == totalIntelligence);
-        }
-
-        [Fact]
-        public void Mage_TotalAttributeOneArmor_ShouldReturnTotalAttributes()
-        {
-            //arrange 
-            Mage newHero = new Mage("Dan");
-            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 1, 0, 2);
-
-            int totalStrength = 1 + 1;
-            int totalDexterity = 1 + 0;
-            int totalIntelligence = 8 + 2;
-
-            //act 
-            newHero.SetArmor(cloth);
             var total = newHero.TotalAttributes();
 
             //assert
@@ -231,41 +213,66 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_TotalAttributeTwoArmor_ShouldReturnTotalAttributes()
+        public void Ranger_TotalAttributeOneArmor_ShouldReturnTotalAttributes()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Armor cape = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 1, 0, 2);
-            Armor hat = new Armor("Common mage hat", EquipmentSlots.Head, ArmorType.Cloth, 1, 0, 0, 3);
+            Ranger newHero = new Ranger("Dan");
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
 
-            int totalStrength = 1 + 1 + 0;
-            int totalDexterity = 1 + 0 + 0;
-            int totalIntelligence = 8 + 2 + 3;
+            int totalStrength = 1 + 1;
+            int totalDexterity = 7 + 0;
+            int totalIntelligence = 1 + 2;
 
             //act 
-            newHero.SetArmor(cape);
+            newHero.SetArmor(leather);
+            var total = newHero.TotalAttributes();
+
+            //assert
+            Assert.True(
+                total.Strength == totalStrength &&
+                total.Dexterity == totalDexterity &&
+                total.Intelligence == totalIntelligence);
+        }
+
+        [Fact]
+        public void Ranger_TotalAttributeTwoArmor_ShouldReturnTotalAttributes()
+        {
+            //arrange 
+            Ranger newHero = new Ranger("Dan");
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
+            Armor hat = new Armor("Common Ranger hat", EquipmentSlots.Head, ArmorType.Leather, 1, 0, 0, 3);
+
+            int totalStrength = 1 + 1 + 0;
+            int totalDexterity = 7 + 0 + 0;
+            int totalIntelligence = 1 + 2 + 3;
+
+            //act 
+            newHero.SetArmor(leather);
             newHero.SetArmor(hat);
             var total = newHero.TotalAttributes();
 
             //assert
-            Assert.True(total.Strength == totalStrength && total.Dexterity == totalDexterity && total.Intelligence == totalIntelligence);
+            Assert.True(
+                total.Strength == totalStrength &&
+                total.Dexterity == totalDexterity &&
+                total.Intelligence == totalIntelligence);
         }
 
         [Fact]
-        public void Mage_TotalAttributeTwoArmorWithReplaced_ShouldReturnTotalAttributes()
+        public void Ranger_TotalAttributeTwoArmorWithReplaced_ShouldReturnTotalAttributes()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Armor cape = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 1, 0, 2);
-            Armor hat = new Armor("Common mage hat", EquipmentSlots.Head, ArmorType.Cloth, 1, 0, 0, 3);
-            Armor niceHat = new Armor("Common mage hat for party's", EquipmentSlots.Head, ArmorType.Cloth, 1, 1, 2, 3);
+            Ranger newHero = new Ranger("Dan");
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
+            Armor hat = new Armor("Common Ranger hat", EquipmentSlots.Head, ArmorType.Leather, 1, 0, 0, 3);
+            Armor niceHat = new Armor("Common Ranger hat for party's", EquipmentSlots.Head, ArmorType.Leather, 1, 1, 2, 3);
 
-            int totalStrength = 1 + 1 + 1;
-            int totalDexterity = 1 + 0 + 2;
-            int totalIntelligence = 8 + 2 + 3;
+            int totalStrength = 1 + 1 +1;
+            int totalDexterity = 7 + 0 + 2;
+            int totalIntelligence = 1 + 2 + 3;
 
             //act 
-            newHero.SetArmor(cape);
+            newHero.SetArmor(leather);
             newHero.SetArmor(hat);
             newHero.SetArmor(niceHat);
             var total = newHero.TotalAttributes();
@@ -279,14 +286,14 @@ namespace rpg_heros_test.HerosTests
 
         // Damages calculation
         [Fact]
-        public void Mage_TotalDamagesNoEquipment_ShouldReturnTotalDamages()
+        public void Ranger_TotalDamagesNoEquipment_ShouldReturnTotalDamages()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
 
             //act 
-         
-            double expeted = 1.08;
+
+            double expeted = 1.07;
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -294,17 +301,16 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_TotalDamagesWithWeapon_ShouldReturnTotalDamages()
+        public void Ranger_TotalDamagesWithWeapon_ShouldReturnTotalDamages()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
-            
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 1);
 
             //act 
-            newHero.SetWeapon(commonWand);
-            
-            double expeted = 2.16;
+            newHero.SetWeapon(Bow);
+          
+            double expeted = 2.14;
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -312,18 +318,18 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_TotalDamagesWithReplacedWeapon_ShouldReturnTotalDamages()
+        public void Ranger_TotalDamagesWithReplacedWeapon_ShouldReturnTotalDamages()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
-            Weapon fineWand = new("Fine Wand", WeaponType.Wands, 3, 1);
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 1);
+            Weapon fineBow = new("Bow in fine tree", WeaponType.Bows, 3, 1);
 
             //act 
-            newHero.SetWeapon(commonWand);
-            newHero.SetWeapon(fineWand);
+            newHero.SetWeapon(Bow);
+            newHero.SetWeapon(fineBow);
 
-            double expeted = 3.24;
+            double expeted = 3.21;
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -331,18 +337,18 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_TotalDamagesWithWeaponAndArmor_ShouldReturnTotalDamages()
+        public void Ranger_TotalDamagesWithWeaponAndArmor_ShouldReturnTotalDamages()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
-            Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Cloth, 1, 0, 1, 2);
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 1);
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
 
             //act 
-            newHero.SetWeapon(commonWand);
-            newHero.SetArmor(cloth);
+            newHero.SetWeapon(Bow);
+            newHero.SetArmor(leather);
 
-            double expeted = 2.2;
+            double expeted = 2.14;
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -350,10 +356,10 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_DisplayInfo_ShouldReturnInfo()
+        public void Ranger_DisplayInfo_ShouldReturnInfo()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
+            Ranger newHero = new Ranger("Dan");
             StringBuilder heroInfo = new StringBuilder();
 
             //act 
@@ -418,20 +424,17 @@ namespace rpg_heros_test.HerosTests
         }
 
         [Fact]
-        public void Mage_DisplayInfoWithArmorAndWeapon_ShouldReturnInfo()
+        public void Ranger_DisplayInfoWithArmorAndWeapon_ShouldReturnInfo()
         {
             //arrange 
-            Mage newHero = new Mage("Dan");
-            Weapon commonWand = new("Common Wand", WeaponType.Wands, 2, 1);
-            Weapon fineWand = new("Fine Wand", WeaponType.Wands, 3, 1);
-
-            //act 
-            
+            Ranger newHero = new Ranger("Dan");
+            Weapon Bow = new("Bow", WeaponType.Bows, 2, 1);
+            Armor leather = new Armor("Common Leather cape", EquipmentSlots.Body, ArmorType.Leather, 1, 1, 0, 2);
+            newHero.SetWeapon(Bow);
+            newHero.SetArmor(leather);
             StringBuilder heroInfo = new StringBuilder();
 
             //act 
-            newHero.SetWeapon(commonWand);
-            newHero.SetWeapon(fineWand);
 
             var totalAtt = newHero.TotalAttributes();
 
@@ -493,3 +496,4 @@ namespace rpg_heros_test.HerosTests
         }
     }
 }
+
