@@ -15,3 +15,7 @@ It's only possible to have one weapon at the time, but they can have up to 3 arm
 The heroes stats can be display and there you will see the Name, Class, Level, total Strength, total Dexterity, total Intelligence and the total Damage for the Hero. 
 
 The total damages is calculated based on the subclasses damages attribute, weapon damages and armor attributes. 
+
+
+There is also testing for all the functions for the heroes. to check what can be done and to see that the right information is given. 
+This is built into the Ci pipeline in git-hub actions so it will run the tests for every push. 
