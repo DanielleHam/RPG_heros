@@ -9,8 +9,7 @@ Armor cloth = new Armor("Common cloth cape", EquipmentSlots.Body, ArmorType.Clot
 
 
 Mage newHero = new Mage("Dan");
-newHero.SetWeapon(commonWand);
-newHero.SetArmor(cloth);
+
 
 Console.WriteLine(newHero.Display()); 
 
