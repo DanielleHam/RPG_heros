@@ -119,58 +119,12 @@ namespace rpg_heros_c.Heros
             heroInfo.AppendLine("Name: " + this.Name);
             heroInfo.AppendLine("Level: " + this.Level);
             heroInfo.AppendLine("Class: " + this.Class);
-            heroInfo.AppendLine(" - Strength: " + Attributes.Strength);
-            heroInfo.AppendLine(" - Intelligence: " + Attributes.Intelligence);
-            heroInfo.AppendLine(" - Dexterity: " + Attributes.Dexterity);
             heroInfo.AppendLine();
-
-            if (ArmorSlots != null)
-            {
-                heroInfo.AppendLine("Armor: ");
-
-                foreach (Armor armor in ArmorSlots.Values)
-                {
-                    heroInfo.AppendLine(" - Name: " + armor.Name);
-                    heroInfo.AppendLine(" - Required Level: " + armor.RequiredLevel);
-                    heroInfo.AppendLine(" - Slot: " + armor.equipmentSlot);
-                    heroInfo.AppendLine(" - Armor Type: " + armor.armorType);
-                    heroInfo.AppendLine(" - Armor Attribute : str: " + armor.ArmorAttributes.Strength + ", dex: " + armor.ArmorAttributes.Dexterity + ", int: " + armor.ArmorAttributes.Intelligence);
-                    heroInfo.AppendLine();
-                }
-            }
-            else
-            {
-                heroInfo.AppendLine("Allowed armor: ");
-                foreach (ArmorType armor in ArmorTypes)
-                    heroInfo.AppendLine(" - " + armor);
-                heroInfo.AppendLine();
-            }
-
-
-
-            if (WeaponSlots != null)
-            {
-                heroInfo.AppendLine("Weapon: ");
-                heroInfo.AppendLine(" - Name: " + WeaponSlots.Name);
-                heroInfo.AppendLine(" - Required Level: " + WeaponSlots.RequiredLevel);
-                heroInfo.AppendLine(" - Slot: " + WeaponSlots.equipmentSlot);
-                heroInfo.AppendLine(" - Weapon type: " + WeaponSlots.type);
-                heroInfo.AppendLine(" - Weapon damage: " + WeaponSlots.WeaponDamage);
-            }
-            else
-            {
-                heroInfo.AppendLine("Allowed weapons: ");
-                foreach (WeaponType weapon in WeaponTypes)
-                    heroInfo.AppendLine(" - " + weapon);
-            }
-
-            heroInfo.AppendLine();
-            heroInfo.AppendLine("Total damage: " + DamageCount());
+           
             heroInfo.AppendLine(totalAtt.ToString());
-
+            heroInfo.AppendLine("Total damage: " + DamageCount());
 
             return heroInfo.ToString();
-
         }
 
 
