@@ -293,7 +293,7 @@ namespace rpg_heros_test.HerosTests
 
             //act 
 
-            double expeted = 1.07;
+            double expeted = Math.Round(1.07, 2);
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -310,7 +310,7 @@ namespace rpg_heros_test.HerosTests
             //act 
             newHero.SetWeapon(Bow);
           
-            double expeted = 2.14;
+            double expeted = Math.Round(2.14, 2);
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -329,7 +329,7 @@ namespace rpg_heros_test.HerosTests
             newHero.SetWeapon(Bow);
             newHero.SetWeapon(fineBow);
 
-            double expeted = 3.21;
+            double expeted = Math.Round(3.21, 2);
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());
@@ -348,7 +348,7 @@ namespace rpg_heros_test.HerosTests
             newHero.SetWeapon(Bow);
             newHero.SetArmor(leather);
 
-            double expeted = 2.14;
+            double expeted = Math.Round(2.14, 2);
 
             //assert
             Assert.Equal(expeted, newHero.DamageCount());

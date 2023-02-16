@@ -34,7 +34,7 @@ namespace rpg_heros_c.Heros
             {
                 totalDamage = (1 * (1 + baseDamage / 100));
             }
-            return totalDamage;
+            return Math.Round(totalDamage, 2); 
         }
 
         public override void LevelUp()
