@@ -81,7 +81,7 @@ namespace rpg_heros_test.HerosTests
         // weapon equip 
 
         [Fact]
-        public void Ranger_equipValidWeaponType_ShouldReturnWeaponInSlotType()
+        public void Ranger_equipValidWeaponType_ShouldReturnTypeOfWeaponInSlot()
         {
             //arrange 
             Ranger newHero = new Ranger("Dan");
@@ -136,7 +136,7 @@ namespace rpg_heros_test.HerosTests
 
         // armor equip 
         [Fact]
-        public void Ranger_equipValidArmorType_ShouldReturnArmorInSlotType()
+        public void Ranger_equipValidArmorType_ShouldReturnTypeOfArmorInSlot()
         {
             //arrange 
             Ranger newHero = new Ranger("Dan");

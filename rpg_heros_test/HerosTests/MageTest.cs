@@ -77,7 +77,7 @@ namespace rpg_heros_test.HerosTests
         // weapon equip 
 
         [Fact]
-        public void Mage_equipValidWeaponType_ShouldReturnWeaponInSlotType()
+        public void Mage_equipValidWeaponType_ShouldReturnTypeOfWeaponInSlot()
         {
             //arrange 
             Mage newHero = new Mage("Dan");
@@ -132,7 +132,7 @@ namespace rpg_heros_test.HerosTests
 
         // armor equip 
         [Fact]
-        public void Mage_equipValidArmorType_ShouldReturnArmorInSlotType()
+        public void Mage_equipValidArmorType_ShouldReturnTypeOfArmorInSlot()
         {
             //arrange 
             Mage newHero = new Mage("Dan");
